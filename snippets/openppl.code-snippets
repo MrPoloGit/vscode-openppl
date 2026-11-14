@@ -1,0 +1,51 @@
+{
+  "OpenPPL: four main sections": {
+    "prefix": "openppl-sections",
+    "body": [
+      "##f$preflop##",
+      "    WHEN ${1:hand\\$AA} ${2:RaiseMax} FORCE",
+      "    WHEN Others Fold FORCE",
+      "",
+      "##f$flop##",
+      "",
+      "##f$turn##",
+      "",
+      "##f$river##",
+      "${0}"
+    ],
+    "description": "The four reserved sections (Structure_Of_A_PPL_File.html) — f$preflop must be present for OpenHoldem to enter OpenPPL mode."
+  },
+  "OpenPPL: WHEN rule": {
+    "prefix": "when",
+    "body": "WHEN ${1:condition} ${2:action} FORCE",
+    "description": "WHEN <condition> <action> FORCE — FORCE is mandatory in OpenPPL (Actions.html)."
+  },
+  "OpenPPL: open-ended WHEN block": {
+    "prefix": "when-block",
+    "body": [
+      "WHEN ${1:condition}",
+      "    WHEN ${2:condition} ${3:action} FORCE",
+      "    WHEN Others ${4:action} FORCE"
+    ],
+    "description": "An open-ended WHEN (no action) scoping a following sequence of rules. At most one level of this nesting is supported (Structure_Of_A_PPL_File.html)."
+  },
+  "OpenPPL: handlist": {
+    "prefix": "handlist",
+    "body": [
+      "##list${1:Name}##",
+      "    ${2:AA KK QQ JJ TT 99}",
+      "${0}"
+    ],
+    "description": "A handlist — the name must start with \"list\" (Handlists.html)."
+  },
+  "OpenPPL: user-defined function": {
+    "prefix": "fdollar",
+    "body": [
+      "##f\\$${1:FunctionName}##",
+      "    WHEN ${2:condition} RETURN ${3:True} FORCE",
+      "    WHEN Others RETURN ${4:False} FORCE",
+      "${0}"
+    ],
+    "description": "A user-defined function (Building_Symbols_On_Your_Own.html) — call it elsewhere as f\\$FunctionName."
+  }
+}

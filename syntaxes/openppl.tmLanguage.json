@@ -1,0 +1,90 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "OpenPPL",
+  "scopeName": "source.openppl",
+  "fileTypes": ["ohf"],
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#section-header" },
+    { "include": "#hand-or-board-expression" },
+    { "include": "#keyword" },
+    { "include": "#operator" },
+    { "include": "#percentage" },
+    { "include": "#number" },
+    { "include": "#paren" },
+    { "include": "#identifier" }
+  ],
+  "repository": {
+    "comment": {
+      "match": "//.*$",
+      "name": "comment.line.double-slash.openppl"
+    },
+
+    "section-header": {
+      "comment": "##f$preflop##, ##list007##, one syntax for both OpenHoldem functions and handlists, confirmed in ; which kind it is is a naming convention, not a different pattern here either.",
+      "match": "(##)([A-Za-z_$][A-Za-z0-9_$]*)(##)",
+      "captures": {
+        "1": { "name": "punctuation.definition.section.openppl" },
+        "2": { "name": "entity.name.function.openppl" },
+        "3": { "name": "punctuation.definition.section.openppl" }
+      }
+    },
+
+    "keyword": {
+      "comment": "Case-insensitive, confirmed (differences to shanky.html): WHEN/FORCE/etc. accept any case mix.",
+      "match": "(?i:\\b(WHEN|FORCE|SET|RETURN)\\b)",
+      "name": "keyword.control.openppl"
+    },
+
+    "operator": {
+      "patterns": [
+        {
+          "match": "(?i:\\b(AND|OR|XOR|NOT|MOD)\\b)",
+          "name": "keyword.operator.logical.openppl"
+        },
+        {
+          "match": "(?i:\\bSUITED\\b)",
+          "name": "keyword.operator.openppl"
+        },
+        {
+          "match": "!=|<=|>=|~~|=|<|>",
+          "name": "keyword.operator.comparison.openppl"
+        },
+        {
+          "match": "\\+|-|\\*|/",
+          "name": "keyword.operator.arithmetic.openppl"
+        }
+      ]
+    },
+
+    "hand-or-board-expression": {
+      "comment": "hand$AA, hand$AQSuited, hand$AKs, board$AT, board$ATSuited, board$AT SUITED (both suited forms accepted, same as tree-sitter-openppl).",
+      "match": "(?i:\\b(hand|board)\\$)([A-Za-z0-9]+)(\\s+(?i:SUITED)\\b)?",
+      "captures": {
+        "1": { "name": "keyword.other.openppl" },
+        "2": { "name": "string.special.openppl" },
+        "3": { "name": "keyword.operator.openppl" }
+      }
+    },
+
+    "percentage": {
+      "match": "\\b[0-9]+(\\.[0-9]+)?%",
+      "name": "constant.numeric.percentage.openppl"
+    },
+    "number": {
+      "match": "\\b[0-9]+(\\.[0-9]+)?\\b",
+      "name": "constant.numeric.openppl"
+    },
+
+    "paren": {
+      "match": "[()]",
+      "name": "punctuation.bracket.openppl"
+    },
+
+    "identifier": {
+      "comment": "Generic fallback for every symbol/action/function name, deliberately NOT enumerated, same principle as tree-sitter-openppl/grammar.js's own identifier token.",
+      "match": "\\b[A-Za-z_$][A-Za-z0-9_$]*\\b",
+      "name": "variable.other.openppl"
+    }
+  }
+}

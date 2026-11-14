@@ -1,0 +1,67 @@
+{
+  "name": "openppl",
+  "displayName": "OpenPPL",
+  "description": "Syntax highlighting and language-server support (diagnostics, hover, completion) for OpenPPL (.ohf) poker bot-scripting files, backed by openppl-ls.",
+  "version": "0.1.0",
+  "publisher": "streetscope",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Programming Languages"],
+  "activationEvents": ["onLanguage:openppl"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "openppl",
+        "aliases": ["OpenPPL"],
+        "extensions": [".ohf"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "openppl",
+        "scopeName": "source.openppl",
+        "path": "./syntaxes/openppl.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "openppl",
+        "path": "./snippets/openppl.code-snippets"
+      }
+    ],
+    "configuration": {
+      "title": "OpenPPL",
+      "properties": {
+        "openppl.serverPath": {
+          "type": "string",
+          "default": "openppl-ls",
+          "description": "Path to the openppl-ls executable. Defaults to \"openppl-ls\" on PATH."
+        },
+        "openppl.registryPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the openppl/registry directory openppl-ls should load. Required, openppl-ls has no built-in default. "
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -w -p .",
+    "test-grammar": "node ./out-test/test/tokenize-corpus.js"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.4.0",
+    "vscode-oniguruma": "^2.0.1",
+    "vscode-textmate": "^9.1.0"
+  }
+}
