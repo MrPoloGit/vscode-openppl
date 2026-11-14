@@ -27,6 +27,13 @@ To run it in VS Code: open this folder, press F5, then set
 right for your machine (both already set in `.vscode/settings.json` for
 this one). Both are required, `openppl-ls` refuses to guess either.
 
+**Not published to the VS Code Marketplace.** This repo is pushed to
+`github.com/MrPoloGit/vscode-openppl`, but there's no marketplace
+listing, `vsce publish` has not been run, and `package.json` has no
+`repository` field yet. The only ways to run this today are the
+Extension Development Host above or a manually-built `.vsix`
+(`npx @vscode/vsce package`), sideloaded via "Install from VSIX".
+
 ## What's implemented
 
 - **Language registration**: `.ohf` → language id `openppl`
