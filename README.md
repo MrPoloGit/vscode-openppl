@@ -7,7 +7,7 @@ The VS Code integration for OpenPPL, same thin-extension shape as `vscode-phh`/`
 Highlighting is still grammar/naming-convention-derived (a TextMate
 grammar has no way to consult a language server), but hover/completion/
 diagnostics now go through `openppl-ls`'s real registry
-(`openppl/registry/symbols.json`), see `openppl-ls/README.md` for what
+(`openppl-data/registry/symbols.json`), see `openppl-ls/README.md` for what
 that added (real symbol hover and completion, unknown-symbol/unknown-
 action warnings, the "false friends" case-collision hint) and its own
 honestly-scoped limits (not every native OpenHoldem engine symbol is
@@ -23,7 +23,7 @@ node test/tokenize-corpus.js   # grammar verification, see below
 
 To run it in VS Code: open this folder, press F5, then set
 `openppl.serverPath` to `../openppl-ls/build/openppl-ls` and
-`openppl.registryPath` to `../openppl/registry` if they aren't already
+`openppl.registryPath` to `../openppl-data/registry` if they aren't already
 right for your machine (both already set in `.vscode/settings.json` for
 this one). Both are required, `openppl-ls` refuses to guess either.
 
@@ -65,7 +65,7 @@ Extension Development Host above or a manually-built `.vsix`
    via `npx @vscode/vsce package` (10 files, 6.4 KB, the same two
    cosmetic warnings every other extension in this project produces).
 2. **The TextMate grammar was tokenized against the real corpus**
-   (`openppl/corpus/`) with `vscode-textmate`+`vscode-oniguruma`, no GUI
+   (`openppl-data/corpus/`) with `vscode-textmate`+`vscode-oniguruma`, no GUI
    launched. **13/13 checks pass**, including that the confirmed
    `hand$AKs` trap form and the space-separated `board$AT SUITED` form
    both tokenize correctly and distinctly, not just "without error."

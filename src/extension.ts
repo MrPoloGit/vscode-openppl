@@ -2,7 +2,7 @@
 // src/extension.ts: starts openppl-ls and hosts the LSP client, no
 // parsing or validation logic here. Now has a registryPath setting,
 // same as vscode-phh/vscode-ohh, openppl-ls's first release took no
-// registry at all, but now loads openppl/registry/symbols.json.
+// registry at all, but now loads openppl-data/registry/symbols.json.
 
 import * as vscode from "vscode";
 import {
@@ -22,7 +22,7 @@ export function activate(context: vscode.ExtensionContext): void {
   if (!registryPath) {
     vscode.window.showErrorMessage(
       'OpenPPL: the "openppl.registryPath" setting is not set. openppl-ls needs the path ' +
-        "to the openppl/registry directory (it has no built-in default)."
+        "to the openppl-data/registry directory (it has no built-in default)."
     );
     return;
   }

@@ -44,7 +44,7 @@
         "openppl.registryPath": {
           "type": "string",
           "default": "",
-          "description": "Path to the openppl/registry directory openppl-ls should load. Required, openppl-ls has no built-in default. "
+          "description": "Path to the openppl-data/registry directory openppl-ls should load. Required, openppl-ls has no built-in default. "
         }
       }
     }
